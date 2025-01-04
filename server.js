@@ -18,7 +18,8 @@ db.once('open', () => console.log('Connected to MongoDB Atlas'));
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -133,7 +134,15 @@ app.get('/user/:name', async (req, res) => {
     const items = await Item.find({ name });
     res.render('user_page', { name, items });
   });
-  
+
+  app.get('/debug', (req, res) => {
+  res.send({
+    viewsPath: app.get('views'),
+    cwd: process.cwd(),
+    dirContent: require('fs').readdirSync(path.join(__dirname, 'views')),
+  });
+});
+
 
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
