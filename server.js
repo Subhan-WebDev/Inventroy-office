@@ -55,6 +55,9 @@ app.post('/generate', async (req, res) => {
           console.error('Error sending QR code file:', err);
           res.status(500).send('Error generating the QR code');
         }
+     else{
+       res.redirect('/');
+     }
       });
 
   // res.redirect('/');
