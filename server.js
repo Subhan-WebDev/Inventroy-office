@@ -49,6 +49,7 @@ app.post('/generate', async (req, res) => {
 
   savedItem.qrCodePath = `/tmp/item_${savedItem._id}.png`;
   await savedItem.save();
+  console.log(qrPath)
   
    res.download(qrPath, `item_${savedItem._id}.png`, (err) => {
         if (err) {
