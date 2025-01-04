@@ -49,6 +49,13 @@ app.post('/generate', async (req, res) => {
 
   savedItem.qrCodePath = `/tmp/item_${savedItem._id}.png`;
   await savedItem.save();
+  
+   res.download(qrPath, `item_${savedItem._id}.png`, (err) => {
+        if (err) {
+          console.error('Error sending QR code file:', err);
+          res.status(500).send('Error generating the QR code');
+        }
+      });
 
   res.redirect('/');
 });
