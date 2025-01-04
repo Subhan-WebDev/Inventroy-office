@@ -57,7 +57,7 @@ app.post('/generate', async (req, res) => {
         }
       });
 
-  res.redirect('/');
+  // res.redirect('/');
 });
 
 
