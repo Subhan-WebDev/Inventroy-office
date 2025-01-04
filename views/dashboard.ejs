@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory Dashboard</title>
+</head>
+<body>
+  <h1>Inventory Dashboard</h1>
+  <a href="/generate">Generate QR Code</a>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>QR Code</th>
+      <th>Actions</th>
+      <th>Item ID</th>
+    </tr>
+    <% items.forEach(item => { %>
+      <tr>
+        <td><%= item._id %></td>
+        <td><%= item.itemId %></td>
+        <td><%= item.name %></td>
+        <td><%= item.team %></td>
+        <td><%= item.type %></td>
+        <td><%= item.status %></td>
+        <td><%= item.date %></td>
+        <td>
+          <% if (item.qrCodePath) { %>
+            <img src="<%= item.qrCodePath %>" width="100">
+          <% } %>
+        </td>
+        <td>
+          <a href="/form/<%= item._id %>">Edit</a> |
+          <a href="/update/<%= item._id %>/faulty">Mark Faulty</a> |
+          <a href="/update/<%= item._id %>/unassign">Unassign</a>
+        </td>
+      </tr>
+    <% }); %>
+  </table>
+  <h1>Teams</h1>
+<table border="1">
+  <tr>
+    <th>Team</th>
+  </tr>
+  <% const teams = [...new Set(items.map(item => item.team))]; %>
+  <% teams.forEach(team => { %>
+    <tr>
+      <td><a href="/team/<%= team %>"><%= team %></a></td>
+    </tr>
+  <% }); %>
+</table>
+
+</body>
+</html>

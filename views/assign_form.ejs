@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assign Item</title>
+</head>
+<body>
+  <h1>Assign Item</h1>
+  <form action="/form/<%= item._id %>" method="POST">
+    <label>Name: <input type="text" name="name" value="<%= item.name %>" /></label><br />
+    <!-- <label>Team: <input type="text" name="team" value="<%= item.team %>" /></label><br /> -->
+    <label>Status: 
+        <select name="team">
+          <option value="Cr" <%= item.status === 'Cr' ? 'selected' : '' %>>Cr</option>
+          <option value="Dev" <%= item.status === 'Dev' ? 'selected' : '' %>>Dev</option>
+          <option value="Rs" <%= item.status === 'Rs' ? 'selected' : '' %>>Rs</option>
+        </select>
+      </label><br />
+    <label>Type: <input type="text" name="type" value="<%= item.type %>" /></label><br />
+    <!-- <label>Status: <input type="text" name="status" value="<%= item.status %>" /></label><br /> -->
+    <label>Status: 
+        <select name="status">
+          <option value="assigned" <%= item.status === 'assigned' ? 'selected' : '' %>>Assigned</option>
+          <option value="faulty" <%= item.status === 'faulty' ? 'selected' : '' %>>Faulty</option>
+          <option value="unassigned" <%= item.status === 'unassigned' ? 'selected' : '' %>>Unassign</option>
+        </select>
+      </label><br />
+    <button type="submit">Save</button>
+  </form>
+</body>
+</html>

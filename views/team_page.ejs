@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team: <%= team %></title>
+</head>
+<body>
+  <h1>Items for Team: <%= team %></h1>
+  <a href="/">Back to Dashboard</a>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>QR Code</th>
+      <th>Actions</th>
+    </tr>
+    <% items.forEach(item => { %>
+      <tr>
+        <td><%= item._id %></td>
+        <td>
+          <a href="/user/<%= item.name %>"><%= item.name %></a>
+        </td>
+        <td><%= item.type %></td>
+        <td><%= item.status %></td>
+        <td><%= item.date %></td>
+        <td>
+          <% if (item.qrCodePath) { %>
+            <img src="<%= item.qrCodePath %>" width="100">
+          <% } %>
+        </td>
+        <td>
+          <a href="/form/<%= item._id %>">Edit</a> |
+          <a href="/update/<%= item._id %>/faulty">Mark Faulty</a> |
+          <a href="/update/<%= item._id %>/unassign">Unassign</a>
+        </td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>
