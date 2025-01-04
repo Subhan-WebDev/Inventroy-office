@@ -43,11 +43,11 @@ app.post('/generate', async (req, res) => {
 
 
   const formUrl = `${req.protocol}://${req.get('host')}/form/${savedItem._id}`;
-  const qrPath = path.join(__dirname, 'public/qr_codes', `item_${savedItem._id}.png`);
+  const qrPath = path.join('/tmp', `item_${savedItem._id}.png`);
   await QRCode.toFile(qrPath, formUrl);
 
 
-  savedItem.qrCodePath = `/qr_codes/item_${savedItem._id}.png`;
+  savedItem.qrCodePath = `/tmp/item_${savedItem._id}.png`;
   await savedItem.save();
 
   res.redirect('/');
