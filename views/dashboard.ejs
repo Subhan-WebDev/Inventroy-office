@@ -46,7 +46,7 @@
               <td class="py-2 px-4"><%= item.team %></td>
               <td class="py-2 px-4"><%= item.type %></td>
               <td class="py-2 px-4"><%= item.status %></td>
-              <td class="py-2 px-4"><%= item.date %></td>
+             <td class="py-2 px-4"><%= item.date.split(' ').slice(0, 5).join(' ') %></td>
               <!-- <td class="py-2 px-4">
                 <% if (item.qrCodePath) { %>
                   <img src="<%= item.qrCodePath %>" width="100" class="rounded-lg">
